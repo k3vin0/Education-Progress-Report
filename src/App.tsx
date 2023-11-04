@@ -1,35 +1,40 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import React from "react";
+import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
+import { Layout } from "./components/global/Layout";
+import { Header } from "./components/global/Header";
 
-function App() {
-  const [count, setCount] = useState(0)
+// LayoutWrapper wraps children with the Layout component
+const LayoutRoute = () => (
+  <Layout
+    header={<Header />}
+    body={<Outlet />} // The Outlet component will render the matched child route.
+    footer={<div>Footer</div>}
+  />
+);
 
+// HomePage.tsx
+const HomePage = () => <div>Home Page Content</div>;
+
+// AboutPage.tsx
+const AboutPage = () => <div>About Page Content</div>;
+
+// ContactPage.tsx
+const ContactPage = () => <div>Contact Page Content</div>;
+
+const App = () => {
   return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
-}
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<LayoutRoute />}>
+          <Route index element={<HomePage />} />
+          <Route path="/about" element={<AboutPage />} />
+          <Route path="/contact" element={<ContactPage />} />
+          {/* More child routes can be added here */}
+        </Route>
+        {/* More parent routes can be added here */}
+      </Routes>
+    </BrowserRouter>
+  );
+};
 
-export default App
+export default App;
