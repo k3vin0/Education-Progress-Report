@@ -2,6 +2,7 @@ import React from "react";
 import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 import { Layout } from "./components/global/Layout";
 import { Header } from "./components/global/Header";
+import { HomePage } from "./Pages/HomePage/HomePage";
 
 // LayoutWrapper wraps children with the Layout component
 const LayoutRoute = () => (
@@ -13,7 +14,6 @@ const LayoutRoute = () => (
 );
 
 // HomePage.tsx
-const HomePage = () => <div>Home Page Content</div>;
 
 // AboutPage.tsx
 const AboutPage = () => <div>About Page Content</div>;
