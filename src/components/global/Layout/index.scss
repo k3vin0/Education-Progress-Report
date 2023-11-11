@@ -1,0 +1,59 @@
+.animated-grid{
+    height: 100vh;
+
+    display: grid;
+    gap: 2rem;
+    grid-template-areas: 
+    'sidebar header header header'
+    'sidebar bodyArea   bodyArea   bodyArea'
+    'sidebar bodyArea   bodyArea   bodyArea'
+    'sidebar bodyArea   bodyArea   bodyArea'
+    'sidebar bodyArea   bodyArea   bodyArea'
+    'sidebar bodyArea   bodyArea   bodyArea'
+    'sidebar bodyArea   bodyArea   bodyArea'
+    'sidebar bodyArea   bodyArea   bodyArea'
+    'sidebar bodyArea   bodyArea   bodyArea'
+    'sidebar bodyArea   bodyArea   bodyArea';
+
+    grid-template-rows: repeat(10,10%);
+    grid-template-columns: 240px auto auto 240px;
+    background-color: #F5F5F5;
+    
+}
+
+.side-nav{
+    grid-area: sidebar;
+    .css-12i7wg6-MuiPaper-root-MuiDrawer-paper{
+        border-width: 0 !important;
+    }
+}
+
+.menu-item.selected {
+    position: relative;
+    background-color: #F5F5F5; /* Background color for the selected item */
+    border-radius: 30px; /* Border-radius for the outward flair */
+    z-index: 2; /* Higher z-index so it's above the ::after pseudo-element */
+  }
+  
+  .menu-item.selected::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 2px; /* Extend outwards from the left */
+    transform: translateY(-50%);
+    width: calc(100% + 20px); /* Extend the width to account for the negative left value */
+    height: 40px; /* Height of the pseudo-element */
+    background-color: #F5F5F5; /* Purple background should match the sidebar */
+    border-radius: 20px; /* Rounded corners for the flair */
+    z-index: -1; /* Ensure it's below the main item content */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Optional: add shadow for depth */
+  }
+  
+  
+.search_header{
+    grid-area: header;
+}
+
+.body-content{
+    grid-area: bodyArea;
+}

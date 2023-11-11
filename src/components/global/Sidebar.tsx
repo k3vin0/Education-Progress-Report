@@ -1,0 +1,86 @@
+import * as React from "react";
+import Drawer from "@mui/material/Drawer";
+import List from "@mui/material/List";
+import ListItem from "@mui/material/ListItem";
+import ListItemIcon from "@mui/material/ListItemIcon";
+import ListItemText from "@mui/material/ListItemText";
+import InboxIcon from "@mui/icons-material/MoveToInbox";
+import MailIcon from "@mui/icons-material/Mail";
+import { FC, useState } from "react";
+import { ListItemButton } from "@mui/material";
+
+const drawerWidth = 240;
+
+type SidebarProps = {
+  className: string;
+};
+
+export const Sidebar: FC<SidebarProps> = ({ className }) => {
+  const [selectedIndex, setSelectedIndex] = useState<number | undefined>();
+  const handleListItemClick = (index: number | undefined) => {
+    if (index) {
+      setSelectedIndex(index);
+    }
+  };
+  console.log(selectedIndex);
+
+  return (
+    <Drawer
+      className={`${className}`}
+      sx={{
+        width: drawerWidth,
+        border: "none",
+        flexShrink: 0,
+        "& .MuiDrawer-paper": {
+          width: drawerWidth,
+          backgroundColor: "#32BAAE;",
+        },
+      }}
+      variant="permanent"
+      anchor="left"
+    >
+      <List>
+        {["Inbox", "Starred", "Send email", "Drafts"].map((text, index) => (
+          <div key={index + 1}>
+            <ListItemButton
+              className={`menu-item ${
+                selectedIndex === index + 1 ? "selected" : ""
+              }`}
+              key={index + 1}
+              selected={selectedIndex === index + 1}
+              onClick={() => handleListItemClick(index + 1)}
+            >
+              <ListItemIcon>
+                {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
+              </ListItemIcon>{" "}
+              <ListItemText primary={text} />
+              {/* {selectedIndex === index && (
+                <div
+                  style={{
+                    backgroundColor: "white",
+                    height: "5rem",
+                    width: "30rem",
+                    position: "absolute",
+                    left: "200px",
+                    borderRadius: "50px",
+                  }}
+                ></div>
+              )} */}
+            </ListItemButton>
+          </div>
+        ))}
+      </List>
+
+      <List>
+        {["All mail", "Trash", "Spam"].map((text, index) => (
+          <ListItemButton key={text}>
+            <ListItemIcon>
+              {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
+            </ListItemIcon>
+            <ListItemText primary={text} />
+          </ListItemButton>
+        ))}
+      </List>
+    </Drawer>
+  );
+};

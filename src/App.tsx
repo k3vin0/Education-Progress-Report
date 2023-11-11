@@ -1,6 +1,6 @@
 import React from "react";
 import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
-import { Layout } from "./components/global/Layout";
+import { Layout } from "./components/global/Layout/Layout";
 import { Header } from "./components/global/Header";
 import { HomePage } from "./Pages/HomePage/HomePage";
 import StudentDetails from "./Pages/StudentDetailPage/StudentDetailPage";
