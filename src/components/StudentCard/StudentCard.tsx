@@ -27,11 +27,14 @@ export const StudentCard: FC<StudentCardProps> = ({
   bio,
 }) => {
   return (
-    <Card elevation={3} sx={{ width: "100%", height: "100%" }}>
+    <Card
+      elevation={3}
+      sx={{ width: "100%", height: "100%", borderRadius: "1rem" }}
+    >
       <CardHeader
         avatar={
           <Avatar sx={{ bgcolor: red[500] }} aria-label="recipe">
-            R
+            {studentName.slice(0, 1)}
           </Avatar>
         }
         action={

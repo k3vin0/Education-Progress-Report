@@ -1,7 +1,6 @@
 import * as React from "react";
 import Drawer from "@mui/material/Drawer";
 import List from "@mui/material/List";
-import ListItem from "@mui/material/ListItem";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
 import InboxIcon from "@mui/icons-material/MoveToInbox";
@@ -33,16 +32,17 @@ export const Sidebar: FC<SidebarProps> = ({ className }) => {
         flexShrink: 0,
         "& .MuiDrawer-paper": {
           width: drawerWidth,
-          backgroundColor: "#32BAAE;",
+          backgroundColor: "transparent;",
         },
       }}
       variant="permanent"
       anchor="left"
     >
-      <List>
-        {["Inbox", "Starred", "Send email", "Drafts"].map((text, index) => (
+      <List sx={{ paddingTop: "2rem" }}>
+        {["Home", "All Students", "Connections", "Chat"].map((text, index) => (
           <div key={index + 1}>
             <ListItemButton
+              style={{ width: "300px" }}
               className={`menu-item ${
                 selectedIndex === index + 1 ? "selected" : ""
               }`}
@@ -52,7 +52,7 @@ export const Sidebar: FC<SidebarProps> = ({ className }) => {
             >
               <ListItemIcon>
                 {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-              </ListItemIcon>{" "}
+              </ListItemIcon>
               <ListItemText primary={text} />
               {/* {selectedIndex === index && (
                 <div

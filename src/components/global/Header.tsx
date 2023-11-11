@@ -170,8 +170,18 @@ export const Header: FC<HeaderProps> = () => {
   return (
     <>
       <ClickAwayListener onClickAway={handleClickAway}>
-        <Box sx={{ flexGrow: 1 }}>
-          <AppBar sx={{ backgroundColor: "#FF6B6C" }} position="static">
+        <Box
+          sx={{
+            flexGrow: 1,
+            paddingTop: "1rem",
+            paddingRight: "1rem",
+            borderRadius: "20px",
+          }}
+        >
+          <AppBar
+            sx={{ backgroundColor: "#FF6B6C", borderRadius: "20px" }}
+            position="static"
+          >
             <Toolbar>
               <IconButton
                 size="large"

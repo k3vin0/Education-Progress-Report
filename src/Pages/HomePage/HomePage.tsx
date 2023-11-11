@@ -5,6 +5,7 @@ import { StudentDataTable } from "./components";
 import { generateStudentArray } from "../../data/students";
 import StudentCard from "../../components/StudentCard/StudentCard";
 import "./index.scss";
+import { Header } from "../../components/global/Header";
 
 export type HomePageProps = object;
 
@@ -25,7 +26,8 @@ export const HomePage: FC<HomePageProps> = () => {
     return studentBios[randomIndex];
   };
   return (
-    <div style={{ height: "75vh" }}>
+    <div style={{ height: "100vh", paddingLeft: "2rem", borderRadius: "20px" }}>
+      <Header />
       <h2>Recent Students</h2>
       <section className="student-card_grid">
         {students.map((student) => (

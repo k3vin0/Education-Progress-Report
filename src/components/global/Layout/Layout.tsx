@@ -3,16 +3,16 @@ import "./index.scss";
 import { Sidebar } from "../Sidebar";
 
 type LayoutProps = {
-  header: ReactNode;
+  header?: ReactNode;
   body: ReactNode;
   footer: ReactNode;
 };
 
-export const Layout: FC<LayoutProps> = ({ header, body }) => {
+export const Layout: FC<LayoutProps> = ({ body }) => {
   return (
     <section className="animated-grid">
       <Sidebar className="side-nav" />
-      <div className="search_header">{header}</div>
+      {/* <div className="search_header">{header}</div> */}
       <div className="body-content">{body}</div>
     </section>
     // <Container maxWidth={false} disableGutters>
