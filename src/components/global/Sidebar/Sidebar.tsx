@@ -7,14 +7,14 @@ import InboxIcon from "@mui/icons-material/MoveToInbox";
 import MailIcon from "@mui/icons-material/Mail";
 import { ListItemButton } from "@mui/material";
 
-const drawerWidth = 240;
+const drawerWidth = 300;
 
 type SidebarProps = {
   className: string;
 };
 
 export const Sidebar: FC<SidebarProps> = ({ className }) => {
-  const [selectedIndex, setSelectedIndex] = useState<number | undefined>();
+  const [selectedIndex, setSelectedIndex] = useState<number | undefined>(1);
 
   const handleListItemClick = (index: number | undefined) => {
     if (index) {
@@ -32,7 +32,7 @@ export const Sidebar: FC<SidebarProps> = ({ className }) => {
         flexShrink: 0,
         "& .MuiDrawer-paper": {
           width: drawerWidth,
-          backgroundColor: "transparent;",
+          backgroundColor: "#32baae;",
           borderWidth: 0,
         },
       }}

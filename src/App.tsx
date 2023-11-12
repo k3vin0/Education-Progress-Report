@@ -10,7 +10,7 @@ const LayoutRoute = () => (
   <Layout
     header={<Header />}
     body={<Outlet />} // The Outlet component will render the matched child route.
-    footer={<div>Footer</div>}
+    footer={<div style={{ backgroundColor: "black" }}>Footer</div>}
   />
 );
 
