@@ -21,7 +21,6 @@ export const Sidebar: FC<SidebarProps> = ({ className }) => {
       setSelectedIndex(index);
     }
   };
-  console.log(selectedIndex);
 
   return (
     <Drawer
