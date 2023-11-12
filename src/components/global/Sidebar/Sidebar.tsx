@@ -41,6 +41,7 @@ export const Sidebar: FC<SidebarProps> = ({ className }) => {
         "& .MuiDrawer-paper": {
           width: drawerWidth,
           backgroundColor: "transparent;",
+          borderWidth: 0,
         },
       }}
       variant="permanent"
