@@ -1,6 +1,6 @@
 import React, { FC, ReactNode } from "react";
 import "./index.scss";
-import { Sidebar } from "../Sidebar";
+import { Sidebar } from "../Sidebar/Sidebar";
 
 type LayoutProps = {
   header?: ReactNode;

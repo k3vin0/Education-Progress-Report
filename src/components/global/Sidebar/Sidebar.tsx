@@ -1,11 +1,10 @@
-import * as React from "react";
+import { FC, useState } from "react";
 import Drawer from "@mui/material/Drawer";
 import List from "@mui/material/List";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
 import InboxIcon from "@mui/icons-material/MoveToInbox";
 import MailIcon from "@mui/icons-material/Mail";
-import { FC, useState } from "react";
 import { ListItemButton } from "@mui/material";
 
 const drawerWidth = 240;
@@ -16,9 +15,17 @@ type SidebarProps = {
 
 export const Sidebar: FC<SidebarProps> = ({ className }) => {
   const [selectedIndex, setSelectedIndex] = useState<number | undefined>();
+  const [secondarySelectedIndex, setSecondarySelectedIndex] = useState<
+    number | undefined
+  >();
   const handleListItemClick = (index: number | undefined) => {
     if (index) {
       setSelectedIndex(index);
+    }
+  };
+  const handleSecondaryListItemClick = (index: number | undefined) => {
+    if (index) {
+      setSecondarySelectedIndex(index);
     }
   };
   console.log(selectedIndex);
@@ -26,6 +33,7 @@ export const Sidebar: FC<SidebarProps> = ({ className }) => {
   return (
     <Drawer
       className={`${className}`}
+      data-testid="sidebar-test-class"
       sx={{
         width: drawerWidth,
         border: "none",
@@ -73,7 +81,13 @@ export const Sidebar: FC<SidebarProps> = ({ className }) => {
 
       <List>
         {["All mail", "Trash", "Spam"].map((text, index) => (
-          <ListItemButton key={text}>
+          <ListItemButton
+            key={text}
+            className={`menu-item ${
+              secondarySelectedIndex === index + 1 ? "selected" : ""
+            }`}
+            onClick={() => handleSecondaryListItemClick(index + 1)}
+          >
             <ListItemIcon>
               {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
             </ListItemIcon>
