@@ -14,7 +14,7 @@ jobs:
         uses: actions/checkout@main
 
       - name: Setup Node
-        uses: action/setup-node@main
+        uses: action/setup-node@master
         with:
           node-version: "16"
 
