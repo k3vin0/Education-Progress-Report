@@ -14,7 +14,7 @@ type SidebarProps = {
 };
 
 export const Sidebar: FC<SidebarProps> = ({ className }) => {
-  const [selectedIndex, setSelectedIndex] = useState<number | undefined>();
+  const [selectedIndex, setSelectedIndex] = useState<number | undefined>(1);
 
   const handleListItemClick = (index: number | undefined) => {
     if (index) {
