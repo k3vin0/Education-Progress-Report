@@ -5,14 +5,28 @@ on:
     branches: [main]
 
 jobs:
-  test_pull_request:
+  test-and-build:
+    name: Test & Build on Pull Request
     runs-on: ubuntu-latest
+
     steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-node@v1
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
         with:
-          node-version: 16
-      - run: npm ci
-      - run: npm test
-      - run: npm run lint
-      - run: npm run build
+          node-version: "16"
+          cache: "npm"
+
+      - name: Install Dependencies
+        run: npm ci
+
+      - name: Run Tests
+        run: npm test
+
+      - name: Lint Code
+        run: npm run lint
+
+      - name: Build Project
+        run: npm run build
