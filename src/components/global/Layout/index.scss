@@ -1,12 +1,14 @@
 .animated-grid{
-    height: 100vh;
+    height: 100%;
 
     display: grid;
     grid-template-areas: 
     'sidebar bodyArea   bodyArea   bodyArea'
     'sidebar bodyArea   bodyArea   bodyArea'
     'sidebar bodyArea   bodyArea   bodyArea'
-    'sidebar bodyArea   bodyArea   bodyArea';
+    'sidebar bodyArea   bodyArea   bodyArea'
+    'footer footer   footer   footer';
+
 
     grid-template-rows: repeat(4,25%);
     grid-template-columns: 240px auto auto 240px;
@@ -49,7 +51,12 @@
 .body-content{
     grid-area: bodyArea;
     background-color: #F5F5F5;
+    height: 100% !important;
     border-top-left-radius: 40px; /* Purple background should match the sidebar */
+    overflow: auto;
+    z-index: 99999;
+}
 
-
+.app-footer{
+    grid-area: footer;
 }

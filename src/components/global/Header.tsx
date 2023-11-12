@@ -176,10 +176,14 @@ export const Header: FC<HeaderProps> = () => {
             paddingTop: "1rem",
             paddingRight: "1rem",
             borderRadius: "20px",
+            paddingLeft: "2rem",
           }}
         >
           <AppBar
-            sx={{ backgroundColor: "#FF6B6C", borderRadius: "20px" }}
+            sx={{
+              backgroundColor: "#FF6B6C",
+              borderRadius: "20px",
+            }}
             position="static"
           >
             <Toolbar>
