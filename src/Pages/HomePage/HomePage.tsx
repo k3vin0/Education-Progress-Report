@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import { FC } from "react";
 import Grid from "@mui/material/Grid";
 import Paper from "@mui/material/Paper";
 import { StudentDataTable } from "./components";
