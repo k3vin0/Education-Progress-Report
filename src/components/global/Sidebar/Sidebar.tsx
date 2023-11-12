@@ -15,20 +15,12 @@ type SidebarProps = {
 
 export const Sidebar: FC<SidebarProps> = ({ className }) => {
   const [selectedIndex, setSelectedIndex] = useState<number | undefined>();
-  const [secondarySelectedIndex, setSecondarySelectedIndex] = useState<
-    number | undefined
-  >();
+
   const handleListItemClick = (index: number | undefined) => {
     if (index) {
       setSelectedIndex(index);
     }
   };
-  const handleSecondaryListItemClick = (index: number | undefined) => {
-    if (index) {
-      setSecondarySelectedIndex(index);
-    }
-  };
-  console.log(selectedIndex);
 
   return (
     <Drawer
@@ -77,23 +69,6 @@ export const Sidebar: FC<SidebarProps> = ({ className }) => {
               )} */}
             </ListItemButton>
           </div>
-        ))}
-      </List>
-
-      <List>
-        {["All mail", "Trash", "Spam"].map((text, index) => (
-          <ListItemButton
-            key={text}
-            className={`menu-item ${
-              secondarySelectedIndex === index + 1 ? "selected" : ""
-            }`}
-            onClick={() => handleSecondaryListItemClick(index + 1)}
-          >
-            <ListItemIcon>
-              {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-            </ListItemIcon>
-            <ListItemText primary={text} />
-          </ListItemButton>
         ))}
       </List>
     </Drawer>
