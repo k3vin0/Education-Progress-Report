@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import { FC } from "react";
 import { DisabilityCodes } from "../../types";
 import {
   Avatar,

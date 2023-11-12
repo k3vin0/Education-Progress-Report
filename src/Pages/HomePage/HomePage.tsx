@@ -11,20 +11,7 @@ export type HomePageProps = object;
 
 export const HomePage: FC<HomePageProps> = () => {
   const students = generateStudentArray(4);
-  const studentBios = [
-    "With a passion for music and a diagnosis of Autism Spectrum Disorder, this vibrant individual communicates best through melodies and rhythms. ",
 
-    "Cheerful demeanor and determination are standout qualities in this student with Intellectual Disability. Excelling in a special education program, especially enjoying art projects.",
-
-    "A love for being on the move characterizes this energetic child with Down Syndrome. A keen interest in sports has led to shining moments in adaptive physical education classes, particularly in track events.",
-
-    "This student with a Specific Learning Disability in reading and writing has found success through assistive technology. Learns best with the help of a tablet and specialized apps .",
-  ];
-
-  const getRandomBio = () => {
-    const randomIndex = Math.floor(Math.random() * studentBios.length);
-    return studentBios[randomIndex];
-  };
   return (
     <div style={{ height: "100vh", paddingLeft: "2rem", borderRadius: "20px" }}>
       <Header />
@@ -37,7 +24,7 @@ export const HomePage: FC<HomePageProps> = () => {
             grade={student.grade}
             age={student.age}
             code={student.code}
-            bio={getRandomBio()}
+            bio={student.bio}
           />
         ))}
       </section>
