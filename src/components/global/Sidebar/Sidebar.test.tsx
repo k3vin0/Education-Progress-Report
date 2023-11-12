@@ -13,7 +13,7 @@ describe("<Sidebar />", () => {
 
 it("renders correct number of list items", () => {
   const { getAllByRole } = render(<Sidebar className="test-class" />);
-  expect(getAllByRole("button").length).toBe(3); // 4 in the first list
+  expect(getAllByRole("button").length).toBe(4); // 4 in the first list
 });
 
 it("selects list item on click", async () => {
