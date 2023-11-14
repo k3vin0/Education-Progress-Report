@@ -2,12 +2,12 @@ import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 import { Layout } from "./components/global/Layout/Layout";
 import { Header } from "./components/global/Header";
 import { HomePage } from "./Pages/HomePage/HomePage";
-import firebase from "firebase/compat/app";
-import "firebase/compat/auth";
 import StudentDetails from "./Pages/StudentDetailPage/StudentDetailPage";
 import ProgressTrackingPage from "./Pages/ProgressTrackingPage/ProgressTrackingPage";
 import Login from "./Pages/LoginPage/Login";
 import { useState, useEffect } from "react";
+import { onAuthStateChanged, User } from "firebase/auth";
+import { auth } from "./firebaseConfig";
 
 // LayoutWrapper wraps children with the Layout component
 const LayoutRoute = () => (
@@ -27,11 +27,12 @@ const AboutPage = () => <div>About Page Content</div>;
 const ContactPage = () => <div>Contact Page Content</div>;
 
 const App = () => {
-  const [user, setUser] = useState<firebase.User | null>(null);
+  const [user, setUser] = useState<User | null>(null);
   console.log(user);
 
   useEffect(() => {
-    const unsubscribe = firebase.auth().onAuthStateChanged((user) => {
+    // Subscribe to auth changes
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
       if (user) {
         // User is signed in.
         setUser(user);

@@ -1,29 +1,36 @@
-import { FC, useEffect } from "react";
-import { getAuth, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
-import app from "../../firebaseConfig"; // Update the import path if necessary
+import { FC, useCallback, useEffect } from "react";
+import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
+import { auth } from "../../firebaseConfig"; // Update the import path if necessary
+import { Button } from "@mui/material";
 
 export type LoginProps = {
   // Define your props here
 };
 
 export const Login: FC<LoginProps> = () => {
-  const signIn = async () => {
+  const signIn = useCallback(async () => {
+    console.log("Logging in");
+
     try {
-      const auth = getAuth(app);
       const provider = new GoogleAuthProvider();
       await signInWithPopup(auth, provider);
       // Sign-in successful.
+      console.log("Sign-in successful");
     } catch (error) {
       // Handle errors here.
-      console.error(error);
+      console.error("Error signing in: ", error);
     }
-  };
+  }, []);
 
   useEffect(() => {
     signIn();
-  }, []);
+  }, [signIn]);
 
-  return <div>Loading...</div>;
+  return (
+    <div>
+      <Button onClick={signIn}>Sign In with Google</Button>
+    </div>
+  );
 };
 
 export default Login;
