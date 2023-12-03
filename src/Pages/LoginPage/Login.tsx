@@ -1,7 +1,8 @@
-import { FC, useCallback, useEffect } from "react";
+import { FC, useCallback } from "react";
 import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 import { auth } from "../../firebaseConfig"; // Update the import path if necessary
 import { Button } from "@mui/material";
+import "../../components/global/Layout/index.scss";
 
 export type LoginProps = {
   // Define your props here
@@ -22,13 +23,20 @@ export const Login: FC<LoginProps> = () => {
     }
   }, []);
 
-  useEffect(() => {
-    signIn();
-  }, [signIn]);
-
   return (
-    <div>
-      <Button onClick={signIn}>Sign In with Google</Button>
+    <div
+      style={{
+        height: "100vh",
+        width: "100vw",
+        backgroundColor: "white",
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+      }}
+    >
+      <Button sx={{ backgroundColor: "blue" }} onClick={signIn}>
+        Sign In
+      </Button>
     </div>
   );
 };

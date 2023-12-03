@@ -48,8 +48,8 @@ const App = () => {
   return (
     <BrowserRouter>
       <Routes>
+        <Route index element={<Login />} />
         <Route path="/" element={<LayoutRoute />}>
-          <Route index element={<Login />} />
           <Route path="/home" element={<HomePage />} />
           <Route path="/about" element={<AboutPage />} />
           <Route path="/student-details" element={<StudentDetails />} />
