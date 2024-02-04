@@ -1,8 +1,10 @@
-name: Node Continuous Integration
+name: Deploy Vite React App
 
 on:
   pull_request:
     branches: [main]
+    paths:
+      - "Packages/vite-react-app/**"
 
 jobs:
   test-and-build:
