@@ -4,6 +4,8 @@ on:
   push:
     branches:
       - main
+    paths:
+      - "Packages/vite-react-app/**"
 
 jobs:
   build-and-deploy:
@@ -11,22 +13,26 @@ jobs:
 
     steps:
       - name: Checkout Repo
-        uses: actions/checkout@main
+        uses: actions/checkout@v2
 
       - name: Setup Node
         uses: actions/setup-node@v2
         with:
           node-version: "16"
+          cache: "npm"
+          cache-dependency-path: Packages/vite-react-app/package-lock.json
 
       - name: Install Dependencies
         run: npm ci
+        working-directory: ./Packages/vite-react-app
 
       - name: Build
         run: npm run build
+        working-directory: ./Packages/vite-react-app
 
       - name: Deploy to Firebase
-        uses: w9jds/firebase-action@master
-        with:
-          args: deploy --only hosting --project ${{ secrets.FIREBASE_PROJECT_ID }}
+        run: |
+          firebase deploy --only hosting --project ${{ secrets.FIREBASE_PROJECT_ID }}
         env:
           FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
+        working-directory: ./Packages/vite-react-app

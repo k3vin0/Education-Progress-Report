@@ -4,6 +4,10 @@ import { Header } from "./components/global/Header";
 import { HomePage } from "./Pages/HomePage/HomePage";
 import StudentDetails from "./Pages/StudentDetailPage/StudentDetailPage";
 import ProgressTrackingPage from "./Pages/ProgressTrackingPage/ProgressTrackingPage";
+import Login from "./Pages/LoginPage/Login";
+import { useState, useEffect } from "react";
+import { onAuthStateChanged, User } from "firebase/auth";
+import { auth } from "./firebaseConfig";
 
 // LayoutWrapper wraps children with the Layout component
 const LayoutRoute = () => (
@@ -23,11 +27,30 @@ const AboutPage = () => <div>About Page Content</div>;
 const ContactPage = () => <div>Contact Page Content</div>;
 
 const App = () => {
+  const [user, setUser] = useState<User | null>(null);
+  console.log(user);
+
+  useEffect(() => {
+    // Subscribe to auth changes
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      if (user) {
+        // User is signed in.
+        setUser(user);
+      } else {
+        // User is signed out.
+        setUser(null);
+      }
+    });
+
+    // Cleanup subscription on unmount
+    return () => unsubscribe();
+  }, []);
   return (
     <BrowserRouter>
       <Routes>
+        <Route index element={<Login />} />
         <Route path="/" element={<LayoutRoute />}>
-          <Route index element={<HomePage />} />
+          <Route path="/home" element={<HomePage />} />
           <Route path="/about" element={<AboutPage />} />
           <Route path="/student-details" element={<StudentDetails />} />
           <Route path="/progress-tracking" element={<ProgressTrackingPage />} />
