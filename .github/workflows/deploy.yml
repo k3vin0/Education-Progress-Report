@@ -4,6 +4,8 @@ on:
   push:
     branches:
       - main
+    paths:
+      - "Packages/vite-react-app/**" # Ensure this is lowercase to match your file structure
 
 jobs:
   build-and-deploy:
@@ -17,16 +19,22 @@ jobs:
         uses: actions/setup-node@v2
         with:
           node-version: "16"
+          cache: "npm"
+          cache-dependency-path: Packages/vite-react-app/package-lock.json # Specify the path to your package-lock.json
 
       - name: Install Dependencies
         run: npm ci
+        working-directory: ./Packages/vite-react-app # Make sure this matches your directory structure
 
       - name: Build
         run: npm run build
+        working-directory: ./Packages/vite-react-app # Make sure this matches your directory structure
 
-      - name: Deploy to Firebase
-        uses: w9jds/firebase-action@master
-        with:
-          args: deploy --only hosting --project ${{ secrets.FIREBASE_PROJECT_ID }}
-        env:
-          FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
+     - name: Deploy to Firebase
+      run: |
+        npm run build
+        firebase deploy --only hosting --project ${{ secrets.FIREBASE_PROJECT_ID }}
+      env:
+        FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
+      working-directory: ./Packages/vite-react-app
+
