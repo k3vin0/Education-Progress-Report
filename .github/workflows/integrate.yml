@@ -4,7 +4,7 @@ on:
   pull_request:
     branches: [main]
     paths:
-      - "Packages/vite-react-app/**"
+      - "Packages/vite-react-app/**" # Ensure this is lowercase to match your file structure
 
 jobs:
   test-and-build:
@@ -20,19 +20,20 @@ jobs:
         with:
           node-version: "16"
           cache: "npm"
+          cache-dependency-path: Packages/vite-react-app/package-lock.json # Specify the path to your package-lock.json
 
       - name: Install Dependencies
         run: npm ci
-        working-directory: ./packages/vite-react-app
+        working-directory: ./Packages/vite-react-app # Make sure this matches your directory structure
 
       - name: Run Tests
         run: npm test
-        working-directory: ./packages/vite-react-app
+        working-directory: ./Packages/vite-react-app
 
       - name: Lint Code
         run: npm run lint
-        working-directory: ./packages/vite-react-app
+        working-directory: ./Packages/vite-react-app
 
       - name: Build Project
         run: npm run build
-        working-directory: ./packages/vite-react-app
+        working-directory: ./Packages/vite-react-app
