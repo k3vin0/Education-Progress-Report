@@ -15,6 +15,7 @@ export const HomePage: FC<HomePageProps> = () => {
   return (
     <div style={{ height: "100vh", borderRadius: "20px" }}>
       <Header />
+      <div></div>
       <h2 style={{ paddingLeft: "2rem" }}>Recent Students</h2>
       <section style={{ paddingLeft: "2rem" }} className="student-card_grid">
         {students.map((student) => (
