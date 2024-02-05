@@ -5,7 +5,7 @@ on:
     branches:
       - main
     paths:
-      - "Packages/vite-react-app/**" # Ensure this is the correct case to match your file structure
+      - "Packages/vite-react-app/**"
 
 jobs:
   build-and-deploy:
@@ -13,12 +13,12 @@ jobs:
 
     steps:
       - name: Checkout Repo
-        uses: actions/checkout@v2 # Use @v2 which is the correct version
+        uses: actions/checkout@v2
 
       - name: Setup Node
         uses: actions/setup-node@v2
         with:
-          node-version: "16"
+          node-version: "18" # Updated to the minimum required version for Firebase CLI v13.1.0
           cache: "npm"
           cache-dependency-path: Packages/vite-react-app/package-lock.json
 
