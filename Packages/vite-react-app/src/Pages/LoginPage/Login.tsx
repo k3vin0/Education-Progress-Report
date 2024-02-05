@@ -24,7 +24,7 @@ export const Login: FC<LoginProps> = () => {
       // Handle errors here.
       console.error("Error signing in: ", error);
     }
-  }, []);
+  }, [navigate]);
 
   return (
     <div
