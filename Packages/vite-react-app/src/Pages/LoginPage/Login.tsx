@@ -34,7 +34,6 @@ export const Login: FC<LoginProps> = () => {
         alignItems: "center",
       }}
     >
-      <div></div>
       <Button sx={{ backgroundColor: "blue" }} onClick={signIn}>
         Sign In
       </Button>
