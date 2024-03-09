@@ -5,7 +5,6 @@ import { StudentDataTable } from "./components";
 import { generateStudentArray } from "../../data/students";
 import StudentCard from "../../components/StudentCard/StudentCard";
 import "./index.scss";
-import { Header } from "../../components/global/Header";
 
 export type HomePageProps = object;
 
@@ -14,7 +13,6 @@ export const HomePage: FC<HomePageProps> = () => {
 
   return (
     <div style={{ height: "100vh", borderRadius: "20px" }}>
-      <Header />
       <h2 style={{ paddingLeft: "2rem" }}>Recent Students</h2>
       <section style={{ paddingLeft: "2rem" }} className="student-card_grid">
         {students.map((student) => (

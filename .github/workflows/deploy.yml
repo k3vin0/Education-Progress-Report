@@ -5,7 +5,7 @@ on:
     branches:
       - main
     paths:
-      - "Packages/vite-react-app/**"
+      - "./**"
 
 jobs:
   build-and-deploy:
@@ -20,11 +20,11 @@ jobs:
         with:
           node-version: "18" # Updated to the minimum required version for Firebase CLI v13.1.0
           cache: "npm"
-          cache-dependency-path: Packages/vite-react-app/package-lock.json
+          cache-dependency-path: ./package-lock-json
 
       - name: Install Dependencies
         run: npm ci
-        working-directory: ./Packages/vite-react-app
+        working-directory: ./
 
       - name: Build
         run: npm run build
@@ -35,14 +35,14 @@ jobs:
           VITE_STORAGE_BUCKET: ${{ secrets.VITE_STORAGE_BUCKET }}
           VITE_MESSAGING_SENDER_ID: ${{ secrets.VITE_MESSAGING_SENDER_ID }}
           VITE_APP_ID: ${{ secrets.VITE_APP_ID }}
-        working-directory: ./Packages/vite-react-app
+        working-directory: ./
 
       - name: Install Firebase CLI
         run: npm install -g firebase-tools
-        working-directory: ./Packages/vite-react-app
+        working-directory: ./
 
       - name: Deploy to Firebase
         run: firebase deploy --only hosting --project ${{ secrets.FIREBASE_PROJECT_ID }}
         env:
           FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
-        working-directory: ./Packages/vite-react-app
+        working-directory: ./

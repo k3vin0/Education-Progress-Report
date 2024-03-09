@@ -1,6 +1,6 @@
 import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 import { Layout } from "./components/global/Layout/Layout";
-import { Header } from "./components/global/Header";
+import { Header } from "./components/global/Header/Header";
 import { HomePage } from "./Pages/HomePage/HomePage";
 import StudentDetails from "./Pages/StudentDetailPage/StudentDetailPage";
 import ProgressTrackingPage from "./Pages/ProgressTrackingPage/ProgressTrackingPage";
