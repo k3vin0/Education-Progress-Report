@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import { FC } from "react";
 import NavItems, { NavigationItem } from "./components/NavItems/NavItems";
 
 export type SidebarProps = {
