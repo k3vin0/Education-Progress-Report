@@ -1,5 +1,4 @@
 import { FC, ReactNode } from "react";
-import "./index.scss";
 import { Sidebar } from "../Sidebar/Sidebar";
 import Header from "../Header/Header";
 import { NavigationItem } from "../Sidebar/components/NavItems/NavItems";
@@ -30,18 +29,24 @@ export const Layout: FC<LayoutProps> = ({ body }) => {
   ];
   return (
     <>
-      <div className="flex flex-col w-full">
-        <div className="w-full">
+      <div className="flex flex-col w-full bg-neutral-50">
+        <div className="w-full sticky top-0 z-10 border-b-2 border-slate-500">
           <Header />
         </div>
-        <section className="main-body_container">
-          <aside>
+        <section className="flex flex-row h-screen">
+          {" "}
+          {/* Ensure the parent has enough height */}
+          <div className="sticky px-2 top-16 h-[calc(100vh-65px)] w-80 overflow-y-hidden">
+            {" "}
+            {/* Adjusted for the sticky sidebar */}
             <Sidebar
               navigationItem={navItems}
               onClick={(link) => console.log(link)}
             />
-          </aside>
-          <div className="border-y-2 border-slate-500 w-full">{body}</div>
+          </div>
+          <div className=" h-[calc(100vh-65px)] w-full overflow-auto">
+            {body}
+          </div>
         </section>
       </div>
     </>

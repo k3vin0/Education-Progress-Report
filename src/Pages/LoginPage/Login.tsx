@@ -2,7 +2,6 @@ import { FC, useCallback } from "react";
 import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 import { auth } from "../../firebaseConfig"; // Update the import path if necessary
 import { Button } from "@mui/material";
-import "../../components/global/Layout/index.scss";
 import { useNavigate } from "react-router-dom";
 
 export type LoginProps = {
