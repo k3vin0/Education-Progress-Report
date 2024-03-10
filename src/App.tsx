@@ -8,6 +8,7 @@ import Login from "./Pages/LoginPage/Login";
 import { useState, useEffect } from "react";
 import { onAuthStateChanged, User } from "firebase/auth";
 import { auth } from "./firebaseConfig";
+import { useGlobalStore } from "./hooks/useGlobalStore";
 
 // LayoutWrapper wraps children with the Layout component
 const LayoutRoute = () => (
@@ -28,6 +29,7 @@ const ContactPage = () => <div>Contact Page Content</div>;
 
 const App = () => {
   const [user, setUser] = useState<User | null>(null);
+  const { setGlobalState } = useGlobalStore();
   console.log(user);
 
   useEffect(() => {
@@ -35,6 +37,7 @@ const App = () => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       if (user) {
         // User is signed in.
+        setGlobalState("user", user);
         setUser(user);
       } else {
         // User is signed out.
@@ -44,7 +47,8 @@ const App = () => {
 
     // Cleanup subscription on unmount
     return () => unsubscribe();
-  }, []);
+  }, [setGlobalState]);
+
   return (
     <BrowserRouter>
       <Routes>

@@ -17,6 +17,11 @@ export const ComponentConfigurations = {
     },
     { label: "IEP's", link: "/ieps", icon: <ArticleIcon color="warning" /> },
   ],
+  avatarMenuOptions: [
+    { label: "Profile" },
+    { label: "Account" },
+    { label: "Logout" },
+  ],
   // Other configurations can be added here
 };
 

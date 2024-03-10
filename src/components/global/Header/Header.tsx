@@ -1,8 +1,13 @@
-import { Avatar, Popover } from "@mui/material";
-import { FC, useState } from "react";
+import { Avatar } from "@mui/material";
+import { FC, useCallback, useState } from "react";
 import NotificationsIcon from "@mui/icons-material/NotificationsTwoTone";
 import SettingsIcon from "@mui/icons-material/SettingsTwoTone";
-import AvatarMenu from "./components/AvatarMenu";
+import AvatarMenu, { MenuOptions } from "./components/AvatarMenu";
+import { ComponentConfigurations } from "../../../shared/config";
+import { signOut } from "firebase/auth";
+import { auth } from "../../../firebaseConfig";
+import { useNavigate } from "react-router-dom";
+import { useGlobalStore } from "../../../hooks/useGlobalStore";
 
 export type HeaderProps = {
   // Define your props here
@@ -10,11 +15,35 @@ export type HeaderProps = {
 
 export const Header: FC<HeaderProps> = () => {
   const [anchorEl, setAnchorEl] = useState<HTMLDivElement | null>(null);
+  const { user } = useGlobalStore();
+  const navigate = useNavigate();
+
   const handleClick = (event: React.MouseEvent<HTMLDivElement>) => {
     setAnchorEl(event.currentTarget);
   };
+
   const handleClose = () => {
     setAnchorEl(null);
+  };
+
+  const logout = useCallback(async () => {
+    console.log("Logging out!");
+
+    try {
+      await signOut(auth);
+      // Sign-in successful.
+      console.log("Logout successful");
+      navigate("");
+    } catch (error) {
+      // Handle errors here.
+      console.error("Error logging out: ", error);
+    }
+  }, [navigate]);
+
+  const handleMenuClick = (item: MenuOptions) => {
+    if (item.label === "Logout") {
+      logout();
+    }
   };
 
   const open = Boolean(anchorEl);
@@ -27,22 +56,6 @@ export const Header: FC<HeaderProps> = () => {
           <div>Search</div>
         </div>
         <div className="flex flex-row w-32 align-center justify-between">
-          <Popover
-            id={id}
-            anchorEl={anchorEl}
-            anchorOrigin={{
-              vertical: "bottom",
-              horizontal: "center",
-            }}
-            transformOrigin={{
-              vertical: "top",
-              horizontal: "right",
-            }}
-            onClose={handleClose}
-            open={open}
-          >
-            The content of the Popover.
-          </Popover>
           <Avatar>
             <SettingsIcon />
           </Avatar>
@@ -54,7 +67,10 @@ export const Header: FC<HeaderProps> = () => {
             anchor={anchorEl}
             handleClose={handleClose}
             onClick={handleClick}
+            handleMenu={handleMenuClick}
             isOpen={open}
+            menuOptions={ComponentConfigurations.avatarMenuOptions}
+            alt={user?.displayName}
           />
         </div>
       </nav>
