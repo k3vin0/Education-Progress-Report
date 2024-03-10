@@ -4,7 +4,6 @@ import Paper from "@mui/material/Paper";
 import { StudentDataTable } from "./components";
 import { generateStudentArray } from "../../data/students";
 import StudentCard from "../../components/StudentCard/StudentCard";
-import "./index.scss";
 
 export type HomePageProps = object;
 
@@ -13,8 +12,8 @@ export const HomePage: FC<HomePageProps> = () => {
 
   return (
     <div style={{ height: "100vh", borderRadius: "20px" }}>
-      <h2 style={{ paddingLeft: "2rem" }}>Recent Students</h2>
-      <section style={{ paddingLeft: "2rem" }} className="student-card_grid">
+      <h2>Recent Students</h2>
+      <section className="grid grid-cols-auto-fit-minmax-340 auto-rows-400 gap-4 pb-4">
         {students.map((student) => (
           <StudentCard
             avatar={student.studentName}

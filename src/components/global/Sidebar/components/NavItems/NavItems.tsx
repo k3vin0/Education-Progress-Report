@@ -23,7 +23,7 @@ export const NavItems: FC<NavItemsProps> = ({ navigationItem, onClick }) => {
   return (
     <>
       <div
-        className="w-full h-15 hover:bg-teal-300 p-4"
+        className="w-full rounded-xl h-15 hover:bg-orange-600 p-4 "
         onClick={
           link && onClick
             ? () => {
@@ -35,7 +35,7 @@ export const NavItems: FC<NavItemsProps> = ({ navigationItem, onClick }) => {
         <div className="flew flex-row items-center content-center ">
           <div className="flex flex-row items-center content-center gap-2">
             {icon}
-            <span>{label}</span>
+            <span className="">{label}</span>
           </div>
         </div>
       </div>

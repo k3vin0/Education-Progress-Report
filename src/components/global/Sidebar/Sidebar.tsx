@@ -8,7 +8,7 @@ export type SidebarProps = {
 
 export const Sidebar: FC<SidebarProps> = ({ navigationItem, onClick }) => {
   return (
-    <div className="flex flex-col w-60  h-full border-2 border-slate-500">
+    <div className="flex flex-col w-60 h-full">
       {navigationItem.map((navItem) => (
         <NavItems
           navigationItem={navItem}
