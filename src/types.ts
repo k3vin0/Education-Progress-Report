@@ -14,3 +14,33 @@ export enum DisabilityCodes {
   AUTISM = "14",
   DEVELOPMENTAL_DELAY = "15",
 }
+
+export type ProviderData = {
+  providerId: string;
+  uid: string;
+  displayName: string;
+  email: string;
+  phoneNumber: string | null;
+  photoURL: string;
+};
+
+export type StsTokenManager = {
+  refreshToken: string;
+  accessToken: string;
+  expirationTime: number;
+};
+
+export type UserInformation = {
+  uid: string;
+  email: string;
+  emailVerified: boolean;
+  displayName: string;
+  isAnonymous: boolean;
+  photoURL: string;
+  providerData: ProviderData[];
+  stsTokenManager: StsTokenManager;
+  createdAt: string;
+  lastLoginAt: string;
+  apiKey: string;
+  appName: string;
+};
