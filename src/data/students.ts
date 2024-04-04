@@ -55,6 +55,7 @@ export const generateStudentArray = (
   const bio = studentBios[Math.floor(Math.random() * studentBios.length)];
   return new Array(numStudents).fill(null).map((): StudentCardProps => {
     return {
+      id: (Math.floor(Math.random() * 1000) + 1).toString(),
       avatar: `https://i.pravatar.cc/150?u=${Math.random()}`, // Using a random image generator service
       studentName: generateRandomName(),
       grade: Math.floor(Math.random() * 12) + 1,
