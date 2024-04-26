@@ -11,8 +11,6 @@ export type LoginProps = {
 export const Login: FC<LoginProps> = () => {
   const navigate = useNavigate();
   const signIn = useCallback(async () => {
-    console.log("Logging in");
-
     try {
       const provider = new GoogleAuthProvider();
       await signInWithPopup(auth, provider);
